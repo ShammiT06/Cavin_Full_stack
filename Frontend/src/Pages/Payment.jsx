@@ -130,7 +130,7 @@ function Payment() {
     }
 
     const dataupload = () => {
-        axios.post(import.meta.env.VITE_USER, { user, mobile, upiId, image, spin,city,region}).then(() => {
+        axios.post("https://cavin-full-stack-1.onrender.com/user", { user, mobile, upiId, image, spin,city,region}).then(() => {
             console.log("Data Sent Successfully")
 
         }).catch(() => {
@@ -144,7 +144,7 @@ function Payment() {
     }
 
     const core = () => {
-        axios.post(import.meta.env.VITE_OTP_API, { mobile: mobile })
+        axios.post("https://cavin-full-stack-1.onrender.com/otp", { mobile: mobile })
             .then((data) => {
                 // console.log("Success:",data.data.otp)
                 let newotp = data.data.otp

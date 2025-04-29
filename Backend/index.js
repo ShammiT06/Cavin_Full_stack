@@ -52,7 +52,7 @@ app.post("/user", (req, res) => {
   let region = req.body.region;
 
   // Insert data into users table
-  const insert_query = "INSERT INTO users(name, mobile, referenceid, upiid, city, region, image) VALUES($1, $2, $3, $4, $5, $6, $7) RETURNING id";
+  const insert_query = "INSERT INTO vendors(name, mobile, referenceid, upiid, city, region, image) VALUES($1, $2, $3, $4, $5, $6, $7) RETURNING id";
   
   con.query(insert_query, [name, mobile, referenceid, upiid, city, region, image], (err, result) => {
     if (err) {
@@ -84,7 +84,7 @@ app.post("/user", (req, res) => {
 //Pending data 
 
 app.get("/fetchData", (req, res) => {
-  const fetchQuery = "SELECT * from users where status = 'Pending' ";
+  const fetchQuery = "SELECT * from vendors where status = 'Pending' ";
   con.query(fetchQuery, (err, result) => {
     if (err) {
       console.error("Error fetching users:", err);
@@ -98,7 +98,7 @@ app.get("/fetchData", (req, res) => {
 //pay appove
 
 app.get("/payment", (req, res) => {
-  const payment = "SELECT * from users where status = 'Approved'";
+  const payment = "SELECT * from vendors where status = 'Approved'";
   con.query(payment, (err, result) => {
     if (err) {
       console.log("Error in Fecting Data")
@@ -113,7 +113,7 @@ app.get("/payment", (req, res) => {
 //Total Number of users
 
 app.get("/total", (req, res) => {
-  const number = "SELECT COUNT(*)  FROM users";
+  const number = "SELECT COUNT(*)  FROM vendors";
 
   con.query(number, (err, result) => {
     if (err) {
@@ -127,7 +127,7 @@ app.get("/total", (req, res) => {
 //Dashboard API
 
 app.get("/bord", (req, res) => {
-  const dash = "select * from users"
+  const dash = "select * from vendors"
   con.query(dash, (err, result) => {
     if (err) {
       res.send("Error")
@@ -142,7 +142,7 @@ app.get("/bord", (req, res) => {
 //Pending Data API
 
 app.get("/fetchapprove", (req, res) => {
-  const fetchQuery = "SELECT * FROM users where status !='Pending'"
+  const fetchQuery = "SELECT * FROM vendors where status !='Pending'"
   con.query(fetchQuery, (err, result) => {
     if (err) {
       res.send("Error in Sending data")
@@ -154,7 +154,7 @@ app.get("/fetchapprove", (req, res) => {
 //Pending Api
 
 app.get("/pending", (req, res) => {
-  const pendingreq = "SELECT count(*) FROM users WHERE status = 'Pending'"
+  const pendingreq = "SELECT count(*) FROM vendors WHERE status = 'Pending'"
   con.query(pendingreq, (err, snt) => {
     if (err) {
       res.send("Error")
@@ -172,7 +172,7 @@ app.put("/approveRequest", (req, res) => {
  
 
   const query = `
-    UPDATE "users"
+    UPDATE "vendors"
     SET status = 'Approved'
     WHERE id = $1
   `;
@@ -201,7 +201,7 @@ app.put("/decline", (req, res) => {
   console.log(id)
 
   const query = `
-  UPDATE "users"
+  UPDATE "vendors"
   SET status ='Declined'
   WHERE id=$1`;
 
@@ -218,7 +218,7 @@ app.put("/decline", (req, res) => {
 //Approved Request
 
 app.get("/approved", (req, res) => {
-  const approve = "SELECT count(*)from users WHERE status !='Pending'"
+  const approve = "SELECT count(*)from vendors WHERE status !='Pending'"
 
   con.query(approve, (err, response) => {
     if (err) {
@@ -256,7 +256,7 @@ app.post("/con", async (req, res) => {
 app.post("/download", async (req, res) => {
   try {
     // Fetching ALL data from users table
-    const query = `select * from users`;
+    const query = `select * from vendors`;
     const result = await con.query(query);
 
     const data = result.rows;

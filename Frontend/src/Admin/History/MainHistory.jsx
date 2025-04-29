@@ -38,7 +38,7 @@ const History = () => {
   const ShowData = currentData.length;
 
   useEffect(() => {
-    axios.get("http://localhost:5000/fetchapprove")
+    axios.get("https://cavin-full-stack-1.onrender.com/fetchapprove")
       .then((response) => {
         setUserData(response.data);
       })

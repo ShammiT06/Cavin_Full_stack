@@ -10,7 +10,7 @@ export default function AdminPayment() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/payment")
+      .get("https://cavin-full-stack-1.onrender.com/payment")
       .then((response) => {
         setUserData(response.data);
       })
@@ -35,7 +35,7 @@ export default function AdminPayment() {
 
     try {
       const amount = selectedUsers.length * 1; 
-      const { data } = await axios.post("http://localhost:5000/create_order", {
+      const { data } = await axios.post("https://cavin-full-stack-1.onrender.com/create_order", {
         amount: amount, 
       });
 
@@ -53,7 +53,7 @@ export default function AdminPayment() {
 
           
           try {
-            await axios.post("http://localhost:5000/verify-payment", {
+            await axios.post("https://cavin-full-stack-1.onrender.com/verify-payment", {
               paymentData: response,
             });
             alert("Payment Successful and Verified!");

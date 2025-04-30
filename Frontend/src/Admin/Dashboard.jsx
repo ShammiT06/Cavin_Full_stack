@@ -13,7 +13,7 @@ const Dashboard = () => {
     const [approved,setapproved]=useState([])
 
     useEffect(() => {
-        axios.get("https://cavin-full-stack-1.onrender.com/bord").then((data) => {
+        axios.get("http://localhost:5000/bord").then((data) => {
             setdashboard(data.data)
         }).catch(() => {
             console.log("Error")
@@ -21,7 +21,7 @@ const Dashboard = () => {
     }, [])
 
     useEffect(()=>{
-        axios.get("https://cavin-full-stack-1.onrender.com/total").then((response)=>{
+        axios.get("http://localhost:5000/total").then((response)=>{
           setcount(response.data)
         }).catch((err)=>{
           console.log("error:",err)
@@ -30,7 +30,7 @@ const Dashboard = () => {
       },[])
 
       useEffect(()=>{
-        axios.get("https://cavin-full-stack-1.onrender.com/approved").then((data)=>{
+        axios.get("http://localhost:5000/approved").then((data)=>{
             setapproved(data.data)
         }).catch((err)=>{
             console.log("Error:",err)
@@ -38,7 +38,7 @@ const Dashboard = () => {
       },[])
 
       useEffect(()=>{
-        axios.get("https://cavin-full-stack-1.onrender.com/pending").then((data)=>{
+        axios.get("http://localhost:5000/pending").then((data)=>{
             setpending(data.data)
             console.log(data.data)
         }).catch(()=>{

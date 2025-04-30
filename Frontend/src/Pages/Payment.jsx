@@ -32,6 +32,8 @@ function Payment() {
     const {mobile, setmobile}= useContext(MobileContext)
     const {recognized}=useContext(TextContext)
 
+    const [imageText,setImagetext]=useState("")
+
 
 
 
@@ -130,7 +132,7 @@ function Payment() {
     }
 
     const dataupload = () => {
-        axios.post("https://cavin-full-stack-1.onrender.com/user", { user, mobile, upiId, image, spin,city,region}).then(() => {
+        axios.post("http://localhost:5000/user", { user, mobile, upiId, image, spin,city,region}).then(() => {
             console.log("Data Sent Successfully")
 
         }).catch(() => {
@@ -144,7 +146,7 @@ function Payment() {
     }
 
     const core = () => {
-        axios.post("https://cavin-full-stack-1.onrender.com/otp", { mobile: mobile })
+        axios.post("https://localhost:5000/otp", { mobile: mobile })
             .then((data) => {
                 // console.log("Success:",data.data.otp)
                 let newotp = data.data.otp
@@ -167,7 +169,7 @@ function Payment() {
        
             <div className="p-5">
                 <img src={image} alt="Please Capture Again" className="w-80" />
-                <p className="mt-2 font-inter text-sm">Scanned Text : {recognized}</p>
+                <input type="text" placeholder="Enter Your Code" className="mt-5 border border-black p-2 rounded-md w-80" />
 
             </div>
 

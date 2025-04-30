@@ -28,7 +28,7 @@ const vendor = userData.find((item) => item.id === Number(id));
 
 
 useEffect(() => {
-  axios.get("https://cavin-full-stack-1.onrender.com/fetchData")
+  axios.get("http://localhost:5000/fetchData")
     .then((response) => {
       setUserData(response.data);
     })
@@ -39,7 +39,7 @@ useEffect(() => {
 
 const handleApprove = async () => {
   try {
-    const res =  axios.put("https://cavin-full-stack-1.onrender.com/approveRequest",{ id }).then(()=>{
+    const res =  axios.put("http://localhost:5000/approveRequest",{ id }).then(()=>{
       console.log(res.data)
       setStatus("Approved")
       
@@ -53,7 +53,7 @@ const handleApprove = async () => {
 
 const handledecline=async()=>{
   try{
-    const declined = axios.put("https://cavin-full-stack-1.onrender.com/decline",{id}).then((res)=>{
+    const declined = axios.put("http://localhost:5000/decline",{id}).then((res)=>{
       console.log(res)
       setStatus("Declined")
     })

@@ -13,7 +13,7 @@ function Reference() {
 
 
   function confirmation() {
-    axios.post("https://cavin-full-stack-1.onrender.com/con", { spin, mobile }).then(() => {
+    axios.post("https://localhost:5000/con", { spin, mobile }).then(() => {
       console.log("Successfull")
       setTimeout(() => {
         setIsDone(true)
